@@ -26,6 +26,9 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_services/User.service';
 import { MemberDetailResolvers } from './_resolvers/member-detail.resolver';
 import { MemberListResolvers } from './_resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolvers } from './_resolvers/member-edit.resolver';
+import { PreventMemberChanges } from './_guards/prevent-member-changes.guard';
 
 
 export function tokenGetter() {
@@ -49,7 +52,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberListComponent,
       MessagesComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
@@ -73,8 +77,10 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
+      PreventMemberChanges,
       UserService,
       MemberDetailResolvers,
+      MemberEditResolvers,
       MemberListResolvers,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
